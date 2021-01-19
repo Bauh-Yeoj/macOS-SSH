@@ -10,16 +10,11 @@ jobs:
   ssh:
     runs-on: macos-11.0
 
-    env:
-      # Change These If You Are Forking The Repo
-      GitHubMail: "rokibhasansagar2014@outlook.com"
-      GitHubName: "rokibhasansagar"
-
     steps:
     - name: Set Git Configs & Secrets
       run: |
-        git config --global user.email ${GitHubMail}
-        git config --global user.name ${GitHubName}
+        git config --global user.email ${{ secrets.GH_EMAIL }}
+        git config --global user.name ${{ secrets.GH_NAME }}
         git config --global color.ui true
         git config --global credential.helper store
         echo "https://${GitHubName}:${{ secrets.GH_TOKEN }}@github.com" > ~/.git-credentials
